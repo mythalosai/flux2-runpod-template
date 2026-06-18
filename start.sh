@@ -32,7 +32,7 @@ fi
 if [ ! -f models/diffusion_models/flux2-dev.safetensors ]; then
     echo "Downloading FLUX.2 Dev..."
     wget -c -O models/diffusion_models/flux2-dev.safetensors \
-    https://huggingface.co/black-forest-labs/FLUX.2-dev/resolve/main/flux2-dev.safetensors
+    https://huggingface.co/Comfy-Org/flux2-dev/resolve/main/split_files/diffusion_models/flux2_dev_fp8mixed.safetensors
 fi
 
 # =====================================
