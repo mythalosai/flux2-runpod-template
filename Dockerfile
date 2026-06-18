@@ -64,13 +64,10 @@ RUN pip install -r requirements.txt
 # =========================
 
 WORKDIR /workspace/ComfyUI/custom_nodes
-
 RUN git clone https://github.com/ltdrdata/ComfyUI-Manager
-RUN git clone https://github.com/ltdrdata/ComfyUI-Impact-Pack
-RUN git clone https://github.com/rgthree/rgthree-comfy
-RUN git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite
-RUN git clone https://github.com/kijai/ComfyUI-KJNodes
-RUN git clone https://github.com/jtydhr88/ComfyUI-qwenmultiangle.git
+RUN git clone https://github.com/cubiq/ComfyUI_essentials
+RUN git clone https://github.com/Fannovel16/comfyui_controlnet_aux
+RUN git clone https://github.com/mythalosai/comfyui-flux2fun-controlnet.git
 
 # =========================
 # 🔽 FINAL SETUP
