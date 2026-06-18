@@ -30,8 +30,6 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python
 
 RUN pip install --upgrade pip
 
-# 🔥 PyTorch NIGHTLY (RTX 5090 / Blackwell)
-
 RUN pip install --pre torch torchvision torchaudio 
 --index-url https://download.pytorch.org/whl/nightly/cu128
 
