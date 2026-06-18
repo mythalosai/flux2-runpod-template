@@ -3,9 +3,7 @@ FROM nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 # =========================
-
 # 🔽 SYSTEM DEPENDENCIES
-
 # =========================
 
 RUN apt-get update && apt-get install -y \
@@ -18,24 +16,20 @@ RUN apt-get update && apt-get install -y \
     libgl1
 
 # Set python
-
-RUN ln -sf /usr/bin/python3 /usr/bin/python
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
 # =========================
-
 # 🔽 PYTHON + TORCH (RTX 50xx FIX)
-
 # =========================
 
 RUN pip install --upgrade pip
 
-RUN pip install --pre torch torchvision torchaudio 
---index-url https://download.pytorch.org/whl/nightly/cu128
+# 🔥 PyTorch NIGHTLY (soporte RTX 5090 / sm_120)
+RUN pip install --pre torch torchvision torchaudio \
+    --index-url https://download.pytorch.org/whl/nightly/cu128
 
 # =========================
-
-# 🔽 CORE DEPENDENCIES
-
+# 🔽 CORE DEPENDENCIES (IMPACT PACK FIX)
 # =========================
 
 RUN pip install \
@@ -52,64 +46,39 @@ RUN pip install \
     accelerate \
     safetensors
 
-# =========================
-
-# 🔽 FILEBROWSER
-
-# =========================
-
-RUN curl -fsSL https://raw.githubusercontent.com/filebrowser/get/master/get.sh | bash
+# 🔥 Segment Anything (necesario para Impact Pack)
+RUN pip install git+https://github.com/facebookresearch/segment-anything.git
 
 # =========================
-
 # 🔽 COMFYUI
-
 # =========================
 
 WORKDIR /workspace
-
 RUN git clone https://github.com/comfyanonymous/ComfyUI
 
 WORKDIR /workspace/ComfyUI
-
 RUN pip install -r requirements.txt
 
 # =========================
-
 # 🔽 CUSTOM NODES
-
 # =========================
 
 WORKDIR /workspace/ComfyUI/custom_nodes
 
 RUN git clone https://github.com/ltdrdata/ComfyUI-Manager
-
-RUN git clone https://github.com/cubiq/ComfyUI_essentials
-
-RUN git clone https://github.com/Fannovel16/comfyui_controlnet_aux
-
-RUN git clone https://github.com/mythalosai/comfyui-flux2fun-controlnet.git
-
-# =========================
-
-# 🔽 INSTALL NODE REQUIREMENTS
+RUN git clone https://github.com/ltdrdata/ComfyUI-Impact-Pack
+RUN git clone https://github.com/rgthree/rgthree-comfy
+RUN git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite
+RUN git clone https://github.com/kijai/ComfyUI-KJNodes
+RUN git clone https://github.com/jtydhr88/ComfyUI-qwenmultiangle.git
 
 # =========================
-
-RUN find /workspace/ComfyUI/custom_nodes 
--name requirements.txt 
--exec pip install -r {} ; || true
-
-# =========================
-
 # 🔽 FINAL SETUP
-
 # =========================
 
 WORKDIR /workspace/ComfyUI
 
 COPY start.sh /start.sh
-
 RUN chmod +x /start.sh
 
 CMD ["/start.sh"]
