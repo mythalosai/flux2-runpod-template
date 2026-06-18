@@ -89,9 +89,7 @@ RUN git clone https://github.com/cubiq/ComfyUI_essentials
 
 RUN git clone https://github.com/Fannovel16/comfyui_controlnet_aux
 
-# ⚠️ Sustituir por el repo correcto
-
-RUN git clone REPO_FLUX2_FUN_CONTROLNET
+RUN git clone https://github.com/mythalosai/comfyui-flux2fun-controlnet.git
 
 # =========================
 
