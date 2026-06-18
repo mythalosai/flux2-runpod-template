@@ -20,7 +20,7 @@ libgl1
 
 # Set python
 
-RUN ln -s /usr/bin/python3 /usr/bin/python
+RUN ln -sf /usr/bin/python3 /usr/bin/python
 
 # =========================
 
@@ -53,7 +53,8 @@ tifffile
 einops 
 transformers 
 accelerate 
-safetensors
+safetensors 
+ninja
 
 # =========================
 
