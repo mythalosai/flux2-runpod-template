@@ -25,7 +25,10 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN pip install --upgrade pip
 
 # 🔥 PyTorch NIGHTLY (soporte RTX 5090 / sm_120)
-RUN pip install --pre torch torchvision torchaudio \
+RUN pip install --pre torch \
+    --index-url https://download.pytorch.org/whl/nightly/cu128
+
+RUN pip install --pre torchvision torchaudio \
     --index-url https://download.pytorch.org/whl/nightly/cu128
 
 # =========================
