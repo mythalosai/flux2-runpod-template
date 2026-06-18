@@ -70,9 +70,11 @@ RUN curl -fsSL https://raw.githubusercontent.com/filebrowser/get/master/get.sh |
 # =========================
 
 WORKDIR /workspace
+
 RUN git clone https://github.com/comfyanonymous/ComfyUI
 
 WORKDIR /workspace/ComfyUI
+
 RUN pip install -r requirements.txt
 
 # =========================
