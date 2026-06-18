@@ -8,15 +8,14 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # =========================
 
-RUN apt-get update && apt-get install -y 
-git 
-wget 
-curl 
-python3 
-python3-pip 
-python3-venv 
-ffmpeg 
-libgl1
+RUN apt-get update && apt-get install -y \
+    git \
+    wget \
+    python3 \
+    python3-pip \
+    python3-venv \
+    ffmpeg \
+    libgl1
 
 # Set python
 
@@ -39,20 +38,19 @@ RUN pip install --pre torch torchvision torchaudio
 
 # =========================
 
-RUN pip install 
-opencv-python 
-scikit-image 
-pillow 
-imageio 
-imageio-ffmpeg 
-piexif 
-scipy 
-tifffile 
-einops 
-transformers 
-accelerate 
-safetensors 
-ninja
+RUN pip install \
+    opencv-python \
+    scikit-image \
+    pillow \
+    imageio \
+    imageio-ffmpeg \
+    piexif \
+    scipy \
+    tifffile \
+    einops \
+    transformers \
+    accelerate \
+    safetensors
 
 # =========================
 
